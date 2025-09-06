@@ -1,0 +1,58 @@
+
+<% if user_signed_in? %>
+  <%= link_to "マイページへ", user_path(current_user.id) %>
+<% end %>
+
+
+<h3>Tweet一覧ページ</h3>
+
+<h3>投稿を検索</h3>
+ <%= form_tag({controller:"travels",action:"index"}, method: :get) do %>
+   <%= text_field_tag :search %>
+   <%= submit_tag '検索する'  %>
+<% end %>
+
+<%= link_to "新規投稿へ", new_travel_path %>
+<div class="travels-container">
+  <% @travels.each do |t| %>
+    <div class="travel">
+
+    <% if t.user.image.attached? %>
+     <%= image_tag  t.user.image, size: '250x200'%>
+    <% end %>
+       
+   <% if t.image.attached? %>
+            <%= image_tag url_for(t.image), size: '250x200'%>
+   <% end %>
+
+      <%= t.user.email %>
+      <%= t.country_name %>
+      <%= t.title %>
+      <%= t.highlight %>
+      <%= t.created_at %>
+      <%= link_to "詳細へ", travel_path(t.id) %>
+      
+    <% if user_signed_in? %>
+      <% if current_user.id == t.user_id %>
+       <%= link_to "編集する", edit_travel_path(t.id) %>
+       <%= link_to "削除する", travel_path(t.id), data: { turbo_method: :delete } %>
+              <% end %>
+      <% if current_user.admin? %>
+        <%= link_to "管理者用編集", edit_travel_path(t.id) %>
+        <%= link_to "管理者用削除", travel_path(t.id), method: :delete %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+<%= form_tag({controller:"travels",action:"index"}, method: :get) do %>
+    <% Tag.all.each do |t| %>
+        <li><%= check_box :tag_ids, t.name %><%= t.name %></li>
+    <% end %>
+    <%= submit_tag '検索' %>
+<% end %>
+
+<%= form_tag({controller:"travels",action:"index"}, method: :get) do %>
+    <%= text_field_tag :tag %>
+    <%= submit_tag 'タグを追加' %>
+<% end %>

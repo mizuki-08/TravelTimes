@@ -1,0 +1,17 @@
+<h1>エリアから探す</h1>
+
+<% @regions.each do |region_name, data| %>
+  <div class="region-section">
+    <h2><%= region_name %></h2>
+    <div class="region-container">
+      <div class="region-image">
+        <%= image_tag data[:image], alt: region_name %>
+      </div>
+      <div class="region-countries">
+        <% data[:countries].each do |country| %>
+          <%= link_to country, news_path(country: country), class: "country-link" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,33 @@
+.region-section {
+  margin-bottom: 40px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+}
+
+.region-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.region-image img {
+  width: 200px;
+  height: 150px;
+  border-radius: 8px;
+}
+
+.region-countries {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.country-link {
+  display: inline-block;
+  text-decoration: underline;
+  color: #007bff;
+}
+.country-link:hover {
+  color: #0056b3;
+}

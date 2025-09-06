@@ -1,0 +1,16 @@
+<h1><%= @country %> のニュース</h1>
+
+<% if @articles.present? %>
+  <ul>
+    <% @articles.each do |article| %>
+      <li>
+        <a href="<%= article[:link] %>" target="_blank">
+          <%= article[:title] %>
+        </a>
+        <small><%= article[:pub_date] %></small>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>記事なし</p>
+<% end %>

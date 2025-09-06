@@ -1,0 +1,15 @@
+
+<h3>Tweet詳細</h3>
+<div class="travel">
+  <p><%= @travel.title %></p>
+  <p><%= @travel.highlight %></p>
+  <p><%= @travel.created_at %></p>
+  <%= link_to "編集する", edit_travel_path(@travel.id) %>
+</div>
+
+<% @travel.tags.each do |tag| %>
+    <span><%= tag.name %></span>
+<% end %>
+<br>
+
+<%= link_to "Tweet一覧に戻る", travels_path %>
