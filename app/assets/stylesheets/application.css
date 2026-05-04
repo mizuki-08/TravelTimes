@@ -13,3 +13,259 @@
  *= require_tree .
  *= require_self
  */
+
+
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-size: cover;
+  font-family: 'Roboto', sans-serif;
+  overflow-x: hidden;
+  background-color: white;
+}
+
+.G20-image{
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+    z-index: 0;
+
+}
+
+.header-inner{
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    flex-direction: column;
+    text-align: center;
+    color: rgb(138, 47, 47);
+}
+
+
+
+
+.site-title {
+
+position: absolute;
+width: 386px;
+height: 85px;
+left: 50%;
+top: 250px;
+transform: translateX(-50%);/* 中央にずらす */
+
+font-family: "Noto Serif JP", 游明朝, "Yu Mincho", YuMincho, "Hiragino Mincho Pro", serif;font-style: italic;
+font-weight: 600;
+font-size: 60px;
+line-height: 60px;
+display: flex;
+justify-content: center; /* 水平方向の中央揃え */
+align-items: center;
+text-align: center;
+
+color: white;
+
+z-index: 10;
+
+}
+
+
+.header-list{
+
+position: fixed;
+width: 535px;
+height: 85px;
+left: 1147px;
+top: 30px;
+
+font-family: "Noto Serif JP", 游明朝, "Yu Mincho", YuMincho, "Hiragino Mincho Pro", serif;font-style: italic;
+font-style: italic;
+font-weight: 600;
+font-size: 14px;
+line-height: 28px;
+display: flex;
+align-items: center;
+text-align: center;
+mix-blend-mode: difference; /* 背景に応じて色が反転する */
+
+color: #FFFFFF;
+
+z-index: 10;
+
+}
+
+.header-list ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin:0;
+  padding: 0;
+}
+
+.header-list li a {
+  text-decoration: none;
+color: #FFFFFF;
+}
+
+.header-list form.button_to {
+  margin: 0;
+  padding: 0;
+  display: inline; /* フォームをインライン化 */
+}
+
+/* 実際に表示される submit ボタンを文字だけにして明朝イタリックに */
+.header-list form.button_to button {
+  appearance: none;        /* ブラウザ標準のボタンスタイルを無効化 */
+  -webkit-appearance: none; /* Safari対策 */
+  -moz-appearance: none;   /* Firefox対策 */
+
+  background: none !important; /* 背景を強制的に消す */
+  border: none !important;     /* 枠を強制的に消す */
+  padding: 0;
+  margin: 0;
+
+  font-family: "Noto Serif JP", "游明朝", "Yu Mincho", YuMincho, "Hiragino Mincho Pro", serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 28px;
+  color: #FFFFFF;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+
+.slider {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* 全画面表示 */
+  overflow: hidden;
+}
+
+.slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* PAS-POL風に画面いっぱい */
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.img-left {
+  position: absolute;
+  top: 1050px;
+  left: 250px;
+  width: 15%;
+  height: 15%;
+  z-index: -1;
+}
+
+.img-right1 {
+  position: absolute;
+  top: 900px;
+  left: 1000px;
+  width: 15%;
+  height: 20%;
+  z-index: -1;
+}
+
+.img-right {
+  position: absolute;
+  top: 1500px;
+  left: 850px;
+  width: 36%;
+  height: 16%;
+  z-index: -1;
+}
+
+
+/* コンセプト部分の全体 */
+.m-concept.l-row {
+  object-fit: cover; /* PAS-POL風に画面いっぱい */
+  padding: 0 20px;
+  text-align: center;
+  /* background-color: rgb(221, 241, 247); */
+  margin-top: 500px;
+  margin-bottom: 400px;
+}
+
+
+/* タイトル */
+.m-concept-title {
+  font-family: "Noto Serif JP", "Yu Mincho", serif;  
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  margin-bottom: 35px;
+  position: relative;
+  display: inline-block;
+}
+
+.m-concept-title span {
+  color: #333;
+  font-size: 60px;
+  margin-left: auto;
+  left: 600px;
+}
+
+/* 説明文 */
+.m-concept-read {
+  font-size: 20px;
+  margin: auto;
+  width: 70%;            /* ← 全体幅を指定（中央に配置） */
+  line-height: 2;        /* ← 行間を少し広めにすると読みやすい */
+  color: white;
+  font-family: "Noto Serif JP", "Yu Mincho", serif;
+}
+
+.m-concept-read p {
+  margin: 35px 0;
+ 
+}
+
+/* サイトロゴ風テキスト */
+.m-concept-siteLogo {
+  font-size: 36px;
+  font-weight: bold;
+  margin-top: 100px;
+  padding: 30px;
+  letter-spacing: 0.1em;
+  color: white;
+  font-family: 'Roboto';
+  font-family: "Noto Serif JP", 游明朝, "Yu Mincho", YuMincho, "Hiragino Mincho Pro", serif;font-style: italic;
+}
+
+/* スマホ対応 */
+@media screen and (max-width: 768px) {
+  .m-concept-title {
+    font-size: 48px;
+  }
+  .m-concept-read {
+    font-size: 16px;
+  }
+  .m-concept-siteLogo {
+    font-size: 24px;
+
+  }
+}
+

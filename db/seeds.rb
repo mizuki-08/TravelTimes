@@ -16,6 +16,7 @@ Tag.create([
 ])
 
 User.create!(
+             name:  "いとう",
              email: "mizuito23@gmail.com",
              password:  "mizuki0823",
              password_confirmation: "mizuki0823",

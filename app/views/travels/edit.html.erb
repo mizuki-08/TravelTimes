@@ -1,5 +1,12 @@
 <%= form_for @travel do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title, :size => 140 %> <br>
+  <%= f.label :country_name %>
+  <%= f.text_field :country_name, :size => 140 %> <br>
   <%= f.label :highlight %>
-  <%= f.text_field :highlight, :size => 140 %> 
+  <%= f.text_field :highlight, :size => 140 %> <br>
+  <%= f.label :image, "画像を変更" %>
+  <%= f.file_field :image %> <br>
+
   <%= f.submit "編集する" %>
 <% end %>

@@ -1,0 +1,94 @@
+/* .top-background {
+  background: url("https://i.pinimg.com/1200x/21/8c/23/218c236307c777063581c35a5fba4333.jpg") no-repeat center center;
+  background-size: cover;
+  height: 100vh; /* 画面いっぱい */
+
+
+.h2 {
+  font-family: "Noto Serif JP", "Yu Mincho", serif;  
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  margin-bottom: 35px;
+  position: relative;
+  display: inline-block;
+}
+
+.travels-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.travel-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.travel-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+/* 番号 */
+.card-number {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-weight: bold;
+  color: #a00;
+  font-size: 16px;
+}
+
+/* NEWバッジ */
+.card-badge {
+  position: absolute;
+  top: 30px;
+  right: 8px;
+  background: #a00;
+  color: #fff;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+.card-content {
+  margin-top: 10px;
+}
+
+.travel-title {
+  font-size: 18px;
+  margin: 5px 0;
+}
+
+.country {
+  font-size: 14px;
+  color: #444;
+}
+
+.highlight {
+  font-size: 13px;
+  color: #666;
+}
+
+.date {
+  font-size: 12px;
+  color: #999;
+}
+
+.card-links {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}

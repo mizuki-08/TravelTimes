@@ -1,0 +1,71 @@
+<h2><%= link_to "Tweet", Tweet_path %></h2>
+
+
+<h3>投稿を検索</h3>
+<%= form_tag({controller:"travels",action:"index"}, method: :get) do %>
+  <%= text_field_tag :search %>
+  <%= submit_tag '検索する'  %>
+<% end %>
+
+<%= link_to "新規投稿へ", new_travel_path %>
+
+<div class="travels-container">
+  <% @travels.each_with_index do |t, i| %>
+    <div class="travel-card">
+
+      <!-- NEWバッジ（例：3日以内の投稿をNEW表示） -->
+      <% if t.created_at > 3.days.ago %>
+        <span class="card-badge">NEW</span>
+      <% end %>
+
+      <!-- ユーザー画像 -->
+      <% if t.user.image.attached? %>
+        <%= image_tag t.user.image, size: '250x200' %>
+      <% end %>
+
+      <!-- 投稿画像 -->
+      <% if t.image.attached? %>
+        <%= image_tag url_for(t.image), size: '250x200' %>
+      <% end %>
+
+      <!-- テキスト情報 -->
+      <div class="card-content">
+        <h3 class="travel-title"><%= t.title %></h3>
+        <p class="country"><%= t.country_name %></p>
+        <p class="highlight"><%= t.highlight %></p>
+        <p class="date"><%= l t.created_at, format: :short %></p>
+      </div>
+
+      <!-- ボタン類 -->
+      <div class="card-links">
+        <%= link_to "詳細へ", travel_path(t.id) %>
+        <% if user_signed_in? %>
+          <% if current_user.id == t.user_id %>
+            <%= link_to "編集する", edit_travel_path(t.id) %>
+            <%= link_to "削除する", travel_path(t.id), data: { turbo_method: :delete } %>
+          <% end %>
+          <% if current_user.admin? %>
+            <%= link_to "管理者用編集", edit_travel_path(t.id) %>
+            <%= link_to "管理者用削除", travel_path(t.id), method: :delete %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<!-- タグ検索フォーム -->
+<%= form_tag({controller:"travels",action:"index"}, method: :get) do %>
+  <ul>
+    <% Tag.all.each do |t| %>
+      <li><%= check_box_tag "tag_ids[]", t.id %><%= t.name %></li>
+    <% end %>
+  </ul>
+  <%= submit_tag '検索' %>
+<% end %>
+
+<!-- タグ追加フォーム -->
+<%= form_tag({controller:"travels",action:"index"}, method: :get) do %>
+  <%= text_field_tag :tag %>
+  <%= submit_tag 'タグを追加' %>
+<% end %>

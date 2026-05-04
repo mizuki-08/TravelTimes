@@ -1,58 +1,138 @@
+<div class="slider">
 
-<% if user_signed_in? %>
-  <%= link_to "マイページへ", user_path(current_user.id) %>
-<% end %>
+<h1 class="site-title"></h1>  
+  <div class="slides">
+    <div class="slide active">
+    <img src="https://images.pexels.com/photos/7245255/pexels-photo-7245255.jpeg" alt="slide1">
+    </div>
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1499678329028-101435549a4e?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="slide2">
+    </div>
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1528164344705-47542687000d?q=80&w=1784&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="slide3">
+    </div>
+    <div class="slide">
+      <img src="https://images.pexels.com/photos/13519983/pexels-photo-13519983.jpeg" alt="slide4">
+    </div>
+    <div class="slide">
+      <img src="https://images.pexels.com/photos/2901208/pexels-photo-2901208.jpeg" alt="slide5">
+    </div>
+  </div>
+</div>
 
 
-<h3>Tweet一覧ページ</h3>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スクロールで文字が消える</title>
+<style>
+  body {
+    height: 2000px; /* スクロールできるように長めにする */
+    background-color: #0d1116;
+    color: white;
+    margin: 0;
+  }
+
+  .fade-text {
+    position: fixed; /* スクロールしても位置は固定 */
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 60px;
+    font-family: "Noto Serif JP", 游明朝, "Yu Mincho", YuMincho, "Hiragino Mincho Pro", serif;font-style: italic;
+    transition: opacity 0.2s ease-out;
+    pointer-events: none; /* クリックなどを無効にする */
+  }
+</style>
+</head>
+<body>
+  <div class="fade-text">TRAVEL&TIMES</div>
+
+  <script>
+    const text = document.querySelector('.fade-text');
+    window.addEventListener('scroll', () => {
+      // スクロール量を取得（0〜1の範囲に正規化）
+      const scrollY = window.scrollY;
+      const maxScroll = 500; // どれくらいスクロールで消えるか調整
+      const opacity = Math.max(1 - scrollY / maxScroll, 0);
+      text.style.opacity = opacity;
+    });
+  </script>
+</body>
+</html>
+
+
+<img src="https://images.pexels.com/photos/32107433/pexels-photo-32107433.jpeg" class="floating-img img-left" alt="">
+
+<img src="https://images.pexels.com/photos/4174168/pexels-photo-4174168.jpeg" class="floating-img img-right" alt="">
+
+
+ <div class="m-concept l-row">
+      <h1 class="m-concept-title m-concept--index">自分の行きたい場所へ<span style="letter-spacing:-20px;"></span></h1>
+
+      <div class="m-concept-read m-concept-read--index">
+        <p>旅に出る理由は、ひとつじゃない。<br>まだ見ぬ景色に出会うため。<br>知らない文化に触れるため。<br>世界の今を感じるため。</p>
+        <p>僕のサイトは、そんな旅のきっかけを届ける場所。</p>
+        <p>どの国へ行こうか迷ったとき、<br>ふと訪れてほしい。<br>次の旅先が、自然と見えてくるはず。</p>
+        <p class="m-concept-siteLogo">『TRAVEL&TIMES』</p>
+      </div>
+  </div>
+
+
+
+<h2><%= link_to "Tweet", travels_path %></h2>
 
 <h3>投稿を検索</h3>
- <%= form_tag({controller:"travels",action:"index"}, method: :get) do %>
-   <%= text_field_tag :search %>
-   <%= submit_tag '検索する'  %>
+<%= form_tag({controller:"travels",action:"index"}, method: :get) do %>
+  <%= text_field_tag :search %>
+  <%= submit_tag '検索する'  %>
 <% end %>
 
 <%= link_to "新規投稿へ", new_travel_path %>
+
 <div class="travels-container">
-  <% @travels.each do |t| %>
-    <div class="travel">
+  <% @travels.each_with_index do |t, i| %>
+    <div class="travel-card">
 
-    <% if t.user.image.attached? %>
-     <%= image_tag  t.user.image, size: '250x200'%>
-    <% end %>
-       
-   <% if t.image.attached? %>
-            <%= image_tag url_for(t.image), size: '250x200'%>
-   <% end %>
-
-      <%= t.user.email %>
-      <%= t.country_name %>
-      <%= t.title %>
-      <%= t.highlight %>
-      <%= t.created_at %>
-      <%= link_to "詳細へ", travel_path(t.id) %>
-      
-    <% if user_signed_in? %>
-      <% if current_user.id == t.user_id %>
-       <%= link_to "編集する", edit_travel_path(t.id) %>
-       <%= link_to "削除する", travel_path(t.id), data: { turbo_method: :delete } %>
-              <% end %>
-      <% if current_user.admin? %>
-        <%= link_to "管理者用編集", edit_travel_path(t.id) %>
-        <%= link_to "管理者用削除", travel_path(t.id), method: :delete %>
+      <!-- NEWバッジ（例：3日以内の投稿をNEW表示） -->
+      <% if t.created_at > 3.days.ago %>
+        <span class="card-badge">NEW</span>
       <% end %>
-    <% end %>
+
+      <!-- ユーザー画像 -->
+      <% if t.user.image.attached? %>
+        <%= image_tag t.user.image, size: '250x200' %>
+      <% end %>
+
+      <!-- 投稿画像 -->
+      <% if t.image.attached? %>
+        <%= image_tag url_for(t.image), size: '250x200' %>
+      <% end %>
+
+      <!-- テキスト情報 -->
+      <div class="card-content">
+        <h3 class="travel-title"><%= t.title %></h3>
+        <p class="country"><%= t.country_name %></p>
+        <p class="highlight"><%= t.highlight %></p>
+        <p class="date"><%= l t.created_at, format: :short %></p>
+      </div>
+
+      <!-- ボタン類 -->
+      <div class="card-links">
+        <%= link_to "詳細へ", travel_path(t.id) %>
+        <% if user_signed_in? %>
+          <% if current_user.id == t.user_id %>
+            <%= link_to "編集する", edit_travel_path(t.id) %>
+            <%= link_to "削除する", travel_path(t.id), data: { turbo_method: :delete } %>
+          <% end %>
+          <% if current_user.admin? %>
+            <%= link_to "管理者用編集", edit_travel_path(t.id) %>
+            <%= link_to "管理者用削除", travel_path(t.id), method: :delete %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   <% end %>
 </div>
 
-<%= form_tag({controller:"travels",action:"index"}, method: :get) do %>
-    <% Tag.all.each do |t| %>
-        <li><%= check_box :tag_ids, t.name %><%= t.name %></li>
-    <% end %>
-    <%= submit_tag '検索' %>
-<% end %>
-
-<%= form_tag({controller:"travels",action:"index"}, method: :get) do %>
-    <%= text_field_tag :tag %>
-    <%= submit_tag 'タグを追加' %>
-<% end %>

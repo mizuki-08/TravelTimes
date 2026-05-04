@@ -11,27 +11,40 @@
   </head>
 
   <body>
- <header>
-  <h1>Travel&Times</h1>
-  <div class="header-list">
-   <ul>
-    <% if user_signed_in? %>
-     <li><%= button_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-     <li><%= link_to "News", worldmap_path, class: "btn btn-primary" %></li>
+   
+  <header class="header">
+  <div class="header-inner">
+   
 
-    <% else %>
-     <li><%= link_to "新規登録", new_user_registration_path %></li>
-     <li><%= link_to "ログイン", new_user_session_path %></li>
-     <li><%= link_to "News", worldmap_path, class: "btn btn-primary" %></li>
-
-
-    <% end %>
-   </ul>
+    <div class="header-list">
+      <ul>
+        <% if user_signed_in? %>
+          <li><%= link_to "TOP", travels_path %></li>
+          <li><%= button_to 'LOGOUT', destroy_user_session_path, method: :delete %></li>
+          <li><%= link_to "NEWS", worldmap_path, class: "btn btn-primary" %></li>
+          <li><%= link_to "MY PAGE", user_path(current_user.id) %></li>
+        <% else %>
+          <li><%= link_to "TOP", travels_path %></li>
+          <li><%= link_to "SIGNUP", new_user_registration_path %></li>
+          <li><%= link_to "LOGIN", new_user_session_path %></li>
+          <li><%= link_to "NEWS", worldmap_path, class: "btn btn-primary" %></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
- </header>
+</header>
+
+
+
+
  <main>
   <%= yield %>
  </main>
 </body>
 
 </html>
+
+
+
+
+

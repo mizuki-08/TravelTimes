@@ -1,0 +1,159 @@
+/* ===========================
+   ページ全体のベース設定
+=========================== */
+body {
+  margin: 0;
+  padding: 0;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* スクロールしても背景固定 */
+  font-family: "Noto Serif JP", 游明朝, "Yu Mincho", YuMincho, "Hiragino Mincho Pro", serif;
+  font-style: italic;
+  color: black;
+  position: relative;
+}
+
+/* 全体のレイアウト（左右2カラム） */
+.container {
+  display: flex;
+  height: 200vh; /* スクロール量を確保 */
+}
+
+/* 左側の写真エリア */
+.images {
+  position: relative;
+  width: 50%;
+  height: 100vh;
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+}
+
+/* 写真の共通設定 */
+.img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+/* スクロール量に応じて出現する写真 */
+.img1 {
+  background-image: url("https://images.pexels.com/photos/32107433/pexels-photo-32107433.jpeg");
+}
+.img2 {
+  background-image: url("https://images.pexels.com/photos/4174168/pexels-photo-4174168.jpeg");
+}
+
+
+/* 右側の説明文（固定） */
+.text-box {
+  width: 50%;
+  padding: 60px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  background: white;
+}
+
+
+
+
+.video-wrapper {
+  position: relative;        /* ページ上部に固定 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 300px;          /* 上200pxだけ表示 */
+  overflow: hidden;       /* はみ出しを非表示 */
+  z-index: -1;            /* 背景に配置 */
+}
+
+.video-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* 枠いっぱいに表示 */
+  object-position: center-30px;   /*上側を優先表示 */
+}
+
+/* ===========================
+   タイトル（例：エリアから探す）
+=========================== */
+.news_title {
+  margin-top: 50px;
+  margin-left: 120px;
+  font-size: 50px;
+  font-style: italic;
+  font-weight: 600;
+  font-family: "Noto Serif JP", 游明朝, "Yu Mincho", YuMincho, "Hiragino Mincho Pro", serif;
+}
+
+/* ===========================
+   各地域セクション
+=========================== */
+.region-section {
+  margin: 4dvh auto;
+  max-width: 1000px;
+  border-top: 1px solid black;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* ===========================
+   エリア内レイアウト
+=========================== */
+.region-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+/* ===========================
+   画像
+=========================== */
+.region-image img {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* ===========================
+   国リンク一覧
+=========================== */
+.region-countries {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  line-height: 2;
+}
+
+/* ===========================
+   国名リンク文字
+=========================== */
+.country-link {
+  display: inline-block;
+  color:black;
+  text-decoration: none;
+  font-style: italic;
+  font-size: 16px;
+}
+
+.country-link:hover {
+  text-decoration: underline;
+}
+
+/* ===========================
+   セクション見出し（例：アジア）
+=========================== */
+.region-section h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-style: italic;
+  border-left: 3px solid #111;
+  padding-left: 10px;
+}
